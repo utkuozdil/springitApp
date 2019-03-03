@@ -1,16 +1,17 @@
 package com.utku.springit.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@Data
+@RequiredArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Vote extends Auditable {
 
     @Id
@@ -19,5 +20,4 @@ public class Vote extends Auditable {
 
     @NonNull
     private int vote;
-
 }
