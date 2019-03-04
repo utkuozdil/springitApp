@@ -10,9 +10,7 @@ import javax.persistence.ManyToOne;
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class Comment extends Auditable {
 
     @Id
