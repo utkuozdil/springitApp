@@ -1,17 +1,11 @@
 package com.utku.springit.domain;
 
 import com.utku.springit.service.BeanUtil;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.URL;
 import org.ocpsoft.prettytime.PrettyTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -40,8 +34,17 @@ public class Link extends Auditable {
     @URL(message = "need valid URL")
     private String url;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "link")
     private List<Comment> commentList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "link")
+    private List<Vote> voteList = new ArrayList<>();
+
+    private int voteCount = 0;
+
+    @ManyToOne
+    private User user;
 
     public void addComment(Comment comment) {
         commentList.add(comment);
